@@ -19,10 +19,18 @@ Performant React Native image component.
 
 <p align="center" >
   <kbd>
-    <img src="https://github.com/DylanVann/react-native-fast-image/raw/master/docs/assets/scroll.gif" title="Scroll Demo" float="left">
+    <img
+      src="https://github.com/DylanVann/react-native-fast-image/blob/main/docs/assets/scroll.gif?raw=true"
+      title="Scroll Demo"
+      float="left"
+    >
   </kbd>
   <kbd>
-    <img src="https://github.com/DylanVann/react-native-fast-image/raw/master/docs/assets/priority.gif" title="Priority Demo" float="left">
+    <img
+      src="https://github.com/DylanVann/react-native-fast-image/blob/main/docs/assets/priority.gif?raw=true"
+      title="Priority Demo"
+      float="left"
+    >
   </kbd>
   <br>
   <em>FastImage example app.</em>
@@ -57,12 +65,11 @@ and
 
 ## Usage
 
-```bash
-# Install
-yarn add react-native-fast-image
+**Note: You must be using React Native 0.60.0 or higher to use the most recent version of `react-native-fast-image`.**
 
-# Automatic linking. (other linking methods listed below)
-react-native link react-native-fast-image
+```bash
+yarn add react-native-fast-image
+cd ios && pod install
 ```
 
 ```jsx
@@ -70,7 +77,7 @@ import FastImage from 'react-native-fast-image'
 
 const YourImage = () => (
     <FastImage
-        style={styles.image}
+        style={{ width: 200, height: 200 }}
         source={{
             uri: 'https://unsplash.it/400/400?image=1',
             headers: { Authorization: 'someAuthToken' },
@@ -81,13 +88,11 @@ const YourImage = () => (
 )
 ```
 
-## Other Linking Methods
+## Are you using Glide already using an AppGlideModule?
 
--   [Manual](docs/installation-manual.md) (might be needed if something went wrong with `react-native link`)
--   [CocoaPods (iOS)](docs/installation-cocoapods.md) (you may wish to use this if you are already using CocoaPods)
 -   [Are you using Glide already using an AppGlideModule?](docs/app-glide-module.md) (you might have problems if you don't read this)
 
-## Proguard
+## Are you using Proguard?
 
 If you use Proguard you will need to add these lines to `android/app/proguard-rules.pro`:
 
@@ -135,6 +140,13 @@ Headers to load the image with. e.g. `{ Authorization: 'someAuthToken' }`.
 -   `FastImage.cacheControl.immutable` - **(Default)** - Only updates if url changes.
 -   `FastImage.cacheControl.web` - Use headers and follow normal caching procedures.
 -   `FastImage.cacheControl.cacheOnly` - Only show images from cache, do not make any network requests.
+
+---
+
+### `defaultSource?: number`
+
+-   An asset loaded with `require(...)`.
+-   Note that like the built-in `Image` implementation, on Android `defaultSource` does not work in debug mode. This is due to the fact that assets are sent from the dev server, but RN's functions only know how to load it from `res`.
 
 ---
 
@@ -217,6 +229,14 @@ FastImage.preload([
 ])
 ```
 
+### `FastImage.clearMemoryCache: () => Promise<void>`
+
+Clear all images from memory cache.
+
+### `FastImage.clearDiskCache: () => Promise<void>`
+
+Clear all images from disk cache.
+
 ## Troubleshooting
 
 If you have any problems using this library try the steps in [troubleshooting](docs/troubleshooting.md) and see if they fix it.
@@ -231,8 +251,6 @@ This project only aims to support the latest version of React Native.\
 This simplifies the development and the testing of the project.
 
 If you require new features or bug fixes for older versions you can fork this project.
-
-Thanks to @mobinni for helping with the conceptualization.
 
 ## Credits
 
@@ -250,14 +268,14 @@ Thanks to [@mobinni](https://github.com/mobinni) for helping with the conceptual
 -   SDWebImage - `MIT`
 -   Glide - BSD, part MIT and Apache 2.0. See the [LICENSE](https://github.com/bumptech/glide/blob/master/license) file for details.
 
-[build-badge]: https://img.shields.io/circleci/project/github/DylanVann/react-native-fast-image/master.svg?style=flat-square
-[build]: https://circleci.com/gh/DylanVann/react-native-fast-image/tree/master
-[coverage-badge]: https://img.shields.io/codecov/c/github/dylanvann/react-native-fast-image.svg?style=flat-square
+[build-badge]: https://github.com/dylanvann/react-native-fast-image/workflows/CI/badge.svg
+[build]: https://github.com/DylanVann/react-native-fast-image/actions?query=workflow%3ACI
+[coverage-badge]: https://img.shields.io/codecov/c/github/dylanvann/react-native-fast-image.svg
 [coverage]: https://codecov.io/github/dylanvann/react-native-fast-image
-[downloads-badge]: https://img.shields.io/npm/dm/react-native-fast-image.svg?style=flat-square
+[downloads-badge]: https://img.shields.io/npm/dm/react-native-fast-image.svg
 [npmtrends]: http://www.npmtrends.com/react-native-fast-image
 [package]: https://www.npmjs.com/package/react-native-fast-image
-[version-badge]: https://img.shields.io/npm/v/react-native-fast-image.svg?style=flat-square
+[version-badge]: https://img.shields.io/npm/v/react-native-fast-image.svg
 [twitter]: https://twitter.com/home?status=Check%20out%20react-native-fast-image%20by%20%40atomarranger%20https%3A//github.com/DylanVann/react-native-fast-image
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/DylanVann/react-native-fast-image.svg?style=social
 [github-watch-badge]: https://img.shields.io/github/watchers/dylanvann/react-native-fast-image.svg?style=social
